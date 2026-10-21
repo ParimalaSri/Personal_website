@@ -38,6 +38,8 @@ export const projects: Project[] = [
     tags: ['Python', 'DuckDB', 'Parquet', 'FastAPI', 'Groq', 'Snov.io'],
     categories: ['Data Engineering', 'AI', 'Analytics'],
     github: 'https://github.com/ParimalaSri/CyberIntel',
+    live: 'https://sales-intelligence-dashboard-cqv8.onrender.com/',
+    extra: [{ label: 'Presentation', href: 'https://canva.link/k0n2app2t6wzm96' }],
   },
   {
     id: 'global-spend',
