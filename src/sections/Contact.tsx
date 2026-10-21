@@ -6,7 +6,7 @@ import Reveal from '../components/Reveal'
 import { profile } from '../data/profile'
 
 const row =
-  'glass flex items-center justify-between gap-4 rounded-2xl px-6 py-5 transition duration-200 hover:-translate-y-0.5 hover:bg-[var(--surface-hover)]'
+  'glass flex min-w-0 items-center justify-between gap-3 rounded-xl px-4 py-4 sm:px-6 sm:py-5 transition duration-200 hover:-translate-y-0.5 hover:bg-[var(--surface-hover)]'
 
 export default function Contact() {
   const [copied, setCopied] = useState(false)
@@ -24,34 +24,37 @@ export default function Contact() {
   return (
     <section id="contact" className="mx-auto max-w-4xl px-6 py-16">
       <Reveal>
-        <div className="glass relative overflow-hidden rounded-2xl p-8 sm:p-10">
+        <div className="glass relative overflow-hidden rounded-2xl p-5 sm:p-10">
           <div
             aria-hidden
             className="absolute -right-24 -top-24 h-72 w-72 rounded-full blur-3xl"
             style={{ background: 'radial-gradient(closest-side, var(--glow), transparent)' }}
           />
           <p className="eyebrow mb-4">05 — Contact</p>
-          <h2 className="max-w-xl text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="max-w-xl text-2xl font-bold tracking-tight sm:text-4xl">
             Let&apos;s talk about data, pipelines, or what to build next.
           </h2>
-          <p className="mt-5 max-w-lg text-lg text-muted">
+          <p className="mt-4 max-w-lg text-base text-muted sm:mt-5 sm:text-lg">
             The best way to reach me is email. I usually reply within a few days.
           </p>
 
-          <div className="mt-10 grid gap-10 md:grid-cols-2">
-            <ContactForm />
-          <div className="grid content-start gap-3">
+          <div className="mt-8 grid gap-8 sm:mt-10 sm:gap-10 md:grid-cols-2">
+            <div className="min-w-0">
+              <ContactForm />
+            </div>
+            <div className="grid min-w-0 content-start gap-3">
             {profile.email && (
-              <div className="flex gap-3">
+              <div className="flex min-w-0 gap-3">
                 <a href={`mailto:${profile.email}`} className={`${row} flex-1`}>
-                  <span className="flex items-center gap-3">
-                    <Mail size={18} className="text-accent" /> {profile.email}
+                  <span className="flex min-w-0 items-center gap-3">
+                    <Mail size={18} className="shrink-0 text-accent" />
+                    <span className="min-w-0 break-all text-sm sm:text-base">{profile.email}</span>
                   </span>
                 </a>
                 <button
                   onClick={copy}
                   aria-label="Copy email address"
-                  className="glass grid w-16 place-items-center rounded-2xl text-accent transition hover:-translate-y-0.5"
+                  className="glass grid w-12 shrink-0 place-items-center rounded-xl text-accent sm:w-16 transition hover:-translate-y-0.5"
                 >
                   {copied ? <Check size={18} /> : <Copy size={18} />}
                 </button>

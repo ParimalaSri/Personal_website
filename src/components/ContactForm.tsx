@@ -5,7 +5,7 @@ import { profile } from '../data/profile'
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
 const field =
-  'w-full rounded-xl border border-line bg-bg px-4 py-3 text-sm outline-none transition placeholder:text-muted/70 focus:border-accent'
+  'block w-full min-w-0 rounded-xl border border-line bg-bg px-4 py-3 text-base outline-none sm:text-sm transition placeholder:text-muted/70 focus:border-accent'
 
 // With profile.formEndpoint set, the message is posted to that service and lands in your inbox.
 // Without it, the form opens the visitor's email app with the message pre-filled (mailto).
@@ -45,7 +45,7 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-3">
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid gap-3 min-[480px]:grid-cols-2">
         <label className="block">
           <span className="sr-only">Your name</span>
           <input name="name" required maxLength={100} autoComplete="name" placeholder="Your name" className={field} />
@@ -74,7 +74,7 @@ export default function ContactForm() {
           className={`${field} resize-y`}
         />
       </label>
-      <div className="flex flex-wrap items-center gap-4">
+      <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4">
         <button
           type="submit"
           disabled={status === 'sending'}
