@@ -1,27 +1,18 @@
 import { useEffect, useState } from 'react'
-import { Menu, Moon, Sun, X } from 'lucide-react'
-import { profile } from '../data/profile'
+import { Briefcase, FolderGit2, Layers, Mail, Moon, Sun, User } from 'lucide-react'
 import type { Theme } from '../hooks/useTheme'
 
 const links = [
-  { id: 'about', label: 'About' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'about', label: 'About', Icon: User },
+  { id: 'experience', label: 'Experience', Icon: Briefcase },
+  { id: 'skills', label: 'Skills', Icon: Layers },
+  { id: 'projects', label: 'Projects', Icon: FolderGit2 },
+  { id: 'contact', label: 'Contact', Icon: Mail },
 ]
 
+// Floating pill dock fixed to the bottom of the viewport.
 export default function Navbar({ theme, onToggle }: { theme: Theme; onToggle: () => void }) {
-  const [open, setOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
   const [active, setActive] = useState('')
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -35,87 +26,38 @@ export default function Navbar({ theme, onToggle }: { theme: Theme; onToggle: ()
     return () => obs.disconnect()
   }, [])
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [])
-
-  const initials = profile.name
-    .split(' ')
-    .map((w) => w[0])
-    .slice(0, 2)
-    .join('')
-
-  const themeBtn = (
-    <button
-      onClick={onToggle}
-      aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-      className="grid h-10 w-10 place-items-center rounded-full border border-line text-muted transition hover:text-accent"
-    >
-      {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-    </button>
-  )
-
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled || open ? 'glass border-x-0 border-t-0' : 'border-b border-transparent'
-      }`}
-    >
-      <nav aria-label="Primary" className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <a href="#top" className="flex items-center gap-3" aria-label={`${profile.name} — back to top`}>
-          <span className="grid h-9 w-9 place-items-center rounded-full border border-line font-serif text-lg text-accent">
-            {initials}
-          </span>
-        </a>
-
-        <ul className="hidden items-center gap-1 md:flex">
-          {links.map((l) => (
-            <li key={l.id}>
+    <header className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-3 md:pb-5">
+      <nav
+        aria-label="Primary"
+        className="glass pointer-events-auto rounded-full shadow-lg"
+      >
+        <ul className="flex items-center gap-0.5 px-2 py-1.5 md:gap-1 md:px-3 md:py-2">
+          {links.map(({ id, label, Icon }) => (
+            <li key={id}>
               <a
-                href={`#${l.id}`}
-                aria-current={active === l.id ? 'true' : undefined}
-                className={`rounded-full px-4 py-2 text-sm transition ${
-                  active === l.id ? 'text-accent' : 'text-muted hover:text-fg'
+                href={`#${id}`}
+                aria-current={active === id ? 'true' : undefined}
+                className={`flex flex-col items-center gap-0.5 rounded-full px-2.5 py-1.5 text-[11px] font-medium transition md:flex-row md:gap-2 md:px-3.5 md:py-2 md:text-sm ${
+                  active === id ? 'bg-[var(--surface-hover)] text-accent' : 'text-muted hover:text-fg'
                 }`}
               >
-                {l.label}
+                <Icon size={16} aria-hidden />
+                <span>{label}</span>
               </a>
             </li>
           ))}
-          <li className="ml-2">{themeBtn}</li>
+          <li className="ml-1 border-l border-line pl-1 md:pl-2">
+            <button
+              onClick={onToggle}
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              className="grid h-10 w-10 place-items-center rounded-full text-muted transition hover:text-accent"
+            >
+              {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
+            </button>
+          </li>
         </ul>
-
-        <div className="flex items-center gap-2 md:hidden">
-          {themeBtn}
-          <button
-            onClick={() => setOpen((o) => !o)}
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            className="grid h-10 w-10 place-items-center rounded-full border border-line"
-          >
-            {open ? <X size={18} /> : <Menu size={18} />}
-          </button>
-        </div>
       </nav>
-
-      {open && (
-        <ul id="mobile-menu" className="mx-auto max-w-6xl px-6 pb-6 md:hidden">
-          {links.map((l) => (
-            <li key={l.id}>
-              <a
-                href={`#${l.id}`}
-                onClick={() => setOpen(false)}
-                className="block border-b border-line py-4 font-serif text-2xl"
-              >
-                {l.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
     </header>
   )
 }

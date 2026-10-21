@@ -16,7 +16,7 @@ export default function BackToTop() {
       onClick={() => window.scrollTo({ top: 0 })}
       aria-label="Back to top"
       tabIndex={show ? 0 : -1}
-      className={`glass fixed bottom-6 right-6 z-40 grid h-12 w-12 place-items-center rounded-full text-accent transition duration-300 hover:-translate-y-1 ${
+      className={`glass fixed bottom-24 right-4 md:bottom-28 z-40 grid h-12 w-12 place-items-center rounded-full text-accent transition duration-300 hover:-translate-y-1 ${
         show ? 'opacity-100' : 'pointer-events-none translate-y-4 opacity-0'
       }`}
     >

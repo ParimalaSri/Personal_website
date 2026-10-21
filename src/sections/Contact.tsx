@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Check, Copy, FileText, Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from '../components/Icons'
+import ContactForm from '../components/ContactForm'
 import Reveal from '../components/Reveal'
 import { profile } from '../data/profile'
 
@@ -21,23 +22,25 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="mx-auto max-w-6xl px-6 py-24">
+    <section id="contact" className="mx-auto max-w-4xl px-6 py-16">
       <Reveal>
-        <div className="glass relative overflow-hidden rounded-[2rem] p-8 sm:p-14">
+        <div className="glass relative overflow-hidden rounded-2xl p-8 sm:p-10">
           <div
             aria-hidden
             className="absolute -right-24 -top-24 h-72 w-72 rounded-full blur-3xl"
             style={{ background: 'radial-gradient(closest-side, var(--glow), transparent)' }}
           />
           <p className="eyebrow mb-4">05 — Contact</p>
-          <h2 className="max-w-xl font-serif text-4xl leading-tight sm:text-5xl">
+          <h2 className="max-w-xl text-3xl font-bold tracking-tight sm:text-4xl">
             Let&apos;s talk about data, pipelines, or what to build next.
           </h2>
           <p className="mt-5 max-w-lg text-lg text-muted">
             The best way to reach me is email. I usually reply within a few days.
           </p>
 
-          <div className="mt-10 grid gap-3 sm:max-w-xl">
+          <div className="mt-10 grid gap-10 md:grid-cols-2">
+            <ContactForm />
+          <div className="grid content-start gap-3">
             {profile.email && (
               <div className="flex gap-3">
                 <a href={`mailto:${profile.email}`} className={`${row} flex-1`}>
@@ -74,6 +77,7 @@ export default function Contact() {
                 </span>
               </a>
             )}
+          </div>
           </div>
           <p aria-live="polite" className="mt-4 h-5 text-sm text-accent">
             {copied ? 'Email address copied.' : ''}

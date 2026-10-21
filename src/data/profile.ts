@@ -7,7 +7,11 @@ export const profile = {
   subtitle: 'Data Engineer · Problem Solver · AI Explorer',
   email: 'sikhakolliparimalasri@gmail.com',
   github: 'https://github.com/ParimalaSri',
-  linkedin: '', // TODO: paste your LinkedIn profile URL, e.g. https://www.linkedin.com/in/your-handle
+  linkedin: 'https://www.linkedin.com/in/parimala-sri-sikhakolli-95103823b/',
+  photo: './profile.jpg',
+  // Optional: paste https://formsubmit.co/ajax/<your-email> to send messages straight to your inbox
+  // from the form. Leave empty and the form opens the visitor's email app instead.
+  formEndpoint: '',
   resumeUrl: '', // TODO: drop resume.pdf in /public and set to './resume.pdf'
   about: [
     'I am a Data Engineer at 3M, where I build and maintain production ELT pipelines that move data from a range of enterprise systems into Snowflake, using Informatica IICS/IDMC, SQL, AWS and Spark. Much of my work is in the unglamorous parts that make data trustworthy: incremental and CDC loads, delete handling, orchestration and performance.',

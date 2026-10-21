@@ -20,10 +20,10 @@ function Card({ p }: { p: Project }) {
       exit={{ opacity: 0, scale: 0.97 }}
       transition={{ duration: 0.35 }}
       whileHover={{ y: -6 }}
-      className="glass group flex h-full flex-col rounded-3xl p-7 hover:bg-[var(--surface-hover)]"
+      className="glass group flex h-full flex-col rounded-xl p-7 hover:bg-[var(--surface-hover)]"
     >
       <p className={`eyebrow ${p.kind === 'concept' ? '!text-muted' : ''}`}>{kindLabel[p.kind]}</p>
-      <h3 className="mt-3 font-serif text-2xl leading-snug">{p.title}</h3>
+      <h3 className="mt-3 text-xl font-semibold leading-snug">{p.title}</h3>
       <p className="mt-4 flex-1 leading-relaxed text-muted">{p.description}</p>
       <ul className="mt-6 flex flex-wrap gap-2">
         {p.tags.map((t) => (
@@ -63,7 +63,7 @@ export default function Projects() {
   const shown = visible.filter((p) => filter === 'All' || p.categories.includes(filter))
 
   return (
-    <section id="projects" className="mx-auto max-w-6xl px-6 py-24">
+    <section id="projects" className="mx-auto max-w-4xl px-6 py-16">
       <SectionHeading
         eyebrow="04 — Projects"
         title="Selected work."

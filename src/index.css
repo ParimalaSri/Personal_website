@@ -2,8 +2,8 @@
 
 :root,
 :root[data-theme='dark'] {
-  --bg: #070b14;
-  --bg-2: #0b1220;
+  --bg: #09090b;
+  --bg-2: #111114;
   --fg: #e8eef7;
   --muted: #94a3b8;
   --line: rgba(148, 163, 184, 0.16);
@@ -15,8 +15,8 @@
   color-scheme: dark;
 }
 :root[data-theme='light'] {
-  --bg: #f6f8fb;
-  --bg-2: #eaeff6;
+  --bg: #fafafa;
+  --bg-2: #f0f0f2;
   --fg: #0b1220;
   --muted: #4b5a73;
   --line: rgba(11, 18, 32, 0.12);
@@ -36,9 +36,9 @@
   --color-line: var(--line);
   --color-surface: var(--surface);
   --color-accent: var(--accent);
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-serif: 'Instrument Serif', Georgia, serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
 }
 
 html { scroll-behavior: smooth; }
@@ -75,6 +75,7 @@ body {
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 20%, transparent 75%);
 }
 
+@keyframes shine { to { transform: rotate(360deg); } }
 @keyframes flow { to { stroke-dashoffset: -48; } }
 @keyframes pulse-ring { 0%,100% { opacity: .25; transform: scale(1);} 50% { opacity: .7; transform: scale(1.25);} }
 @keyframes float { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-8px);} }

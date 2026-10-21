@@ -1,4 +1,5 @@
 import BackToTop from './components/BackToTop'
+import Splash from './components/Splash'
 import Navbar from './components/Navbar'
 import { useTheme } from './hooks/useTheme'
 import About from './sections/About'
@@ -19,6 +20,7 @@ export default function App() {
       >
         Skip to content
       </a>
+      <Splash />
       <Navbar theme={theme} onToggle={toggle} />
       <main>
         <Hero />
@@ -28,7 +30,7 @@ export default function App() {
         <Projects />
         <Contact />
       </main>
-      <Footer />
+      <div className="pb-24"><Footer /></div>
       <BackToTop />
     </>
   )
