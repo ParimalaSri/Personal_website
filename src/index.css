@@ -75,6 +75,7 @@ body {
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 20%, transparent 75%);
 }
 
+@keyframes orbit { to { transform: rotate(360deg); } }
 @keyframes shine { to { transform: rotate(360deg); } }
 @keyframes flow { to { stroke-dashoffset: -48; } }
 @keyframes pulse-ring { 0%,100% { opacity: .25; transform: scale(1);} 50% { opacity: .7; transform: scale(1.25);} }
@@ -87,3 +88,5 @@ body {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
 }
+
+.orbit { transform-box: view-box; transform-origin: 50% 50%; animation: orbit var(--d, 24s) linear infinite; }
