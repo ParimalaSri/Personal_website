@@ -55,7 +55,7 @@ export default function DataFlow() {
               onMouseEnter={() => setActiveId(n.id)}
               onFocus={() => setActiveId(n.id)}
               onBlur={() => setActiveId(null)}
-              onClick={() => setActiveId(selected ? null : n.id)}
+              onClick={() => setActiveId(n.id)}
               onKeyDown={(e) => e.key === 'Escape' && setActiveId(null)}
             >
               {/* larger invisible hit area for touch */}
