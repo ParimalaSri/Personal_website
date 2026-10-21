@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+:root,
+:root[data-theme='dark'] {
+  --bg: #070b14;
+  --bg-2: #0b1220;
+  --fg: #e8eef7;
+  --muted: #94a3b8;
+  --line: rgba(148, 163, 184, 0.16);
+  --surface: rgba(255, 255, 255, 0.035);
+  --surface-hover: rgba(255, 255, 255, 0.06);
+  --accent: #5eead4;
+  --accent-ink: #04201c;
+  --glow: rgba(94, 234, 212, 0.14);
+  color-scheme: dark;
+}
+:root[data-theme='light'] {
+  --bg: #f6f8fb;
+  --bg-2: #eaeff6;
+  --fg: #0b1220;
+  --muted: #4b5a73;
+  --line: rgba(11, 18, 32, 0.12);
+  --surface: rgba(255, 255, 255, 0.7);
+  --surface-hover: #ffffff;
+  --accent: #0f766e;
+  --accent-ink: #ffffff;
+  --glow: rgba(15, 118, 110, 0.12);
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg2: var(--bg-2);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-surface: var(--surface);
+  --color-accent: var(--accent);
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+html { scroll-behavior: smooth; }
+section[id] { scroll-margin-top: 5rem; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s, color 0.3s;
+}
+::selection { background: var(--accent); color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+.glass {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.grain-grid {
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 20%, transparent 75%);
+}
+
+@keyframes flow { to { stroke-dashoffset: -48; } }
+@keyframes pulse-ring { 0%,100% { opacity: .25; transform: scale(1);} 50% { opacity: .7; transform: scale(1.25);} }
+@keyframes float { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-8px);} }
+.flow-line { stroke-dasharray: 6 10; animation: flow 2.2s linear infinite; }
+.pulse-ring { transform-box: fill-box; transform-origin: center; animation: pulse-ring 3s ease-in-out infinite; }
+.float { animation: float 7s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+}
